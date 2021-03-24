@@ -13,7 +13,11 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "react-navigation": "^4.4.4",
+    "react-navigation-header-buttons": "^7.0.0",
+    "react-redux": "^7.2.3",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
