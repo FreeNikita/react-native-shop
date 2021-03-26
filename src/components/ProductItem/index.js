@@ -1,14 +1,20 @@
 import React, { memo, useCallback } from 'react';
 import { Button, Image, StyleSheet, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
 import { Touchable } from '../Touchable';
 import Colors from "../../constants/Colors";
 import { ROUTER_PATH } from "../../navigation/path";
+import { ADD_TO_CART } from "../../store/types";
 
-export const ProductItem = memo(({item: {id, title, price, imageUrl}, onAddCart, navigation}) => {
+export const ProductItem = memo(({item : product, navigation}) => {
+  const {id, title, price, imageUrl} = product
   const openDetail = useCallback(() => navigation.navigate(ROUTER_PATH.productsDetail, {
     productId: id,
     productTitle: title
   }), [navigation])
+  const dispatch = useDispatch()
+
+  const addToCart = () => dispatch({type: ADD_TO_CART, payload: { product } })
 
   return (
     <View style={styles.product}>
@@ -30,7 +36,7 @@ export const ProductItem = memo(({item: {id, title, price, imageUrl}, onAddCart,
             <Button
               title={'To Cart'}
               color={Colors.primary}
-              onPress={onAddCart}
+              onPress={addToCart}
             />
           </View>
         </View>

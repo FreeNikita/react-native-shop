@@ -1,19 +1,27 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, Button } from 'react-native'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Colors from '../../constants/Colors'
+import { ADD_TO_CART } from "../../store/types";
 
-export const ProductDetailScreen = memo(({navigation, ...props}) => {
+export const ProductDetailScreen = memo(({navigation}) => {
   const productId = navigation.getParam('productId')
   const {availableProducts = []} = useSelector(state => state.products)
   const product = availableProducts.find(({id}) => id === productId)
+  const dispatch = useDispatch();
+
+  const addToCart = () => dispatch({type: ADD_TO_CART, payload: { product } })
 
   return (
     <ScrollView>
       <View>
         <Image style={styles.image} source={{uri: product.imageUrl}} />
         <View  style={styles.button} >
-          <Button color={Colors.primary}title="Add to Cart" onPress={() => {}}/>
+          <Button
+            color={Colors.primary}
+            title="Add to Cart"
+            onPress={addToCart}
+          />
         </View>
         <Text style={styles.price}>${product.price.toFixed(2)}</Text>
         <Text style={styles.description}>{product.description}</Text>
