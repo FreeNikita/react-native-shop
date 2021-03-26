@@ -1157,6 +1157,23 @@
     "semver" "7.3.2"
     "slugify" "^1.3.4"
 
+"@expo/configure-splash-screen@0.3.1":
+  "integrity" "sha512-Wf9U8OYoIQojYjTuXgtTqDmlA4SdSEEQo9PxnVKuF8224FtJoYX1Kwc6kiVKc/4suplrqE71ZVJXOE2Uyh4SHw=="
+  "resolved" "https://registry.npmjs.org/@expo/configure-splash-screen/-/configure-splash-screen-0.3.1.tgz"
+  "version" "0.3.1"
+  dependencies:
+    "@react-native-community/cli-platform-android" "^4.10.0"
+    "@react-native-community/cli-platform-ios" "^4.10.0"
+    "color-string" "^1.5.3"
+    "commander" "^5.1.0"
+    "core-js" "^3.6.5"
+    "deep-equal" "^2.0.3"
+    "fs-extra" "^9.0.0"
+    "lodash" "^4.17.15"
+    "pngjs" "^5.0.0"
+    "xcode" "^3.0.0"
+    "xml-js" "^1.6.11"
+
 "@expo/configure-splash-screen@0.3.4":
   "integrity" "sha512-HsukM03X5/EXSucVsLN/oLqyFq/1jAjpADkgU1HLaezFpkr+TOquI6yDwdDp1450kcm891PE/SYJ+mCdPxzDLw=="
   "resolved" "https://registry.npmjs.org/@expo/configure-splash-screen/-/configure-splash-screen-0.3.4.tgz"
@@ -1644,7 +1661,7 @@
     "hermes-profile-transformer" "^0.0.6"
     "ip" "^1.1.5"
 
-"@react-native-community/cli-platform-android@^4.13.0", "@react-native-community/cli-platform-android@^4.7.0":
+"@react-native-community/cli-platform-android@^4.10.0", "@react-native-community/cli-platform-android@^4.13.0", "@react-native-community/cli-platform-android@^4.7.0":
   "integrity" "sha512-3i8sX8GklEytUZwPnojuoFbCjIRzMugCdzDIdZ9UNmi/OhD4/8mLGO0dgXfT4sMWjZwu3qjy45sFfk2zOAgHbA=="
   "resolved" "https://registry.npmjs.org/@react-native-community/cli-platform-android/-/cli-platform-android-4.13.0.tgz"
   "version" "4.13.0"
@@ -1660,7 +1677,7 @@
     "slash" "^3.0.0"
     "xmldoc" "^1.1.2"
 
-"@react-native-community/cli-platform-ios@^4.7.0":
+"@react-native-community/cli-platform-ios@^4.10.0", "@react-native-community/cli-platform-ios@^4.7.0":
   "integrity" "sha512-6THlTu8zp62efkzimfGr3VIuQJ2514o+vScZERJCV1xgEi8XtV7mb/ZKt9o6Y9WGxKKkc0E0b/aVAtgy+L27CA=="
   "resolved" "https://registry.npmjs.org/@react-native-community/cli-platform-ios/-/cli-platform-ios-4.13.0.tgz"
   "version" "4.13.0"
@@ -3123,6 +3140,13 @@
     "snapdragon" "^0.8.1"
     "to-regex" "^3.0.1"
 
+"expo-app-loading@^1.0.1":
+  "integrity" "sha512-qgsystchwMHep43YMAMHJAD5bRUikolQpb1d+ySWF4ZFTtNInmLAPqiBcVSey5taRuHD3cAvEijx3wc0W/HfVw=="
+  "resolved" "https://registry.npmjs.org/expo-app-loading/-/expo-app-loading-1.0.1.tgz"
+  "version" "1.0.1"
+  dependencies:
+    "expo-splash-screen" "0.8.1"
+
 "expo-application@~2.4.1":
   "integrity" "sha512-VHDvXz55LIYdLoE1aR0AFycB1jz4ggbMToUbKAbCEjro+PdUNm/Gj8gQeFgH6wL2oAztQH4qJ+uiOwrw8SFK+Q=="
   "resolved" "https://registry.npmjs.org/expo-application/-/expo-application-2.4.1.tgz"
@@ -3204,6 +3228,13 @@
   "integrity" "sha512-dNhKcoUUn+1kmEfFVxSU7h+YsqODqlExZQJcQgxgeiuCeeDvJWkE10t3jjrO6aNfrdM5i/X2l3oh401EDslWsQ=="
   "resolved" "https://registry.npmjs.org/expo-secure-store/-/expo-secure-store-9.3.0.tgz"
   "version" "9.3.0"
+
+"expo-splash-screen@*", "expo-splash-screen@0.8.1":
+  "integrity" "sha512-7NQo8OgkfQ4sv4mIHE58fkiQTGyl5dOP70uAUTb5YXC/QUsHIqEpKQ6ZXDpkLU1cbZ32c8Vtok4r2FRIUrzxcg=="
+  "resolved" "https://registry.npmjs.org/expo-splash-screen/-/expo-splash-screen-0.8.1.tgz"
+  "version" "0.8.1"
+  dependencies:
+    "@expo/configure-splash-screen" "0.3.1"
 
 "expo-sqlite@~8.5.0":
   "integrity" "sha512-8VMFrjagl8qE+BWqdacl2I0KLwF6SPMFHqJHHB5vlT/cxOi4PAk1SpmCIvALgZhrtO6UXG6eOG27gICONZtlVg=="
@@ -3539,17 +3570,7 @@
     "jsonfile" "^4.0.0"
     "universalify" "^0.1.0"
 
-"fs-extra@^9.0.0":
-  "integrity" "sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ=="
-  "resolved" "https://registry.npmjs.org/fs-extra/-/fs-extra-9.1.0.tgz"
-  "version" "9.1.0"
-  dependencies:
-    "at-least-node" "^1.0.0"
-    "graceful-fs" "^4.2.0"
-    "jsonfile" "^6.0.1"
-    "universalify" "^2.0.0"
-
-"fs-extra@9.0.0":
+"fs-extra@^9.0.0", "fs-extra@9.0.0":
   "integrity" "sha512-pmEYSk3vYsG/bF651KPUXZ+hvjpgWYw/Gc7W9NFUe3ZVLczKKWIij3IKpOrQcdw4TILtibFslZ0UmR8Vvzig4g=="
   "resolved" "https://registry.npmjs.org/fs-extra/-/fs-extra-9.0.0.tgz"
   "version" "9.0.0"
