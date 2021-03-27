@@ -3,9 +3,9 @@ import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { ProductItem } from '../../components/ProductItem';
-import { MenuHeaderButton } from "../../components/HeaderButtons";
+import { MenuHeaderButton, CreateHeaderButton } from "../../components/HeaderButtons";
 
-export const UserProductsScreen = () => {
+export const UserProductsScreen = ({navigation}) => {
   const userProducts = useSelector(state => state.products.userProducts);
 
   return (
@@ -13,7 +13,7 @@ export const UserProductsScreen = () => {
       data={userProducts}
       keyExtractor={item => item.id}
       renderItem={itemData => (
-        <ProductItem {...itemData} isOwner/>
+        <ProductItem {...itemData} isOwner navigation={navigation}/>
       )}
     />
   );
@@ -23,5 +23,6 @@ UserProductsScreen.navigationOptions = ({navigation}) => {
   return {
     headerTitle: 'Your Products',
     headerLeft: () => <MenuHeaderButton navigation={navigation}/>,
+    headerRight: () => <CreateHeaderButton navigation={navigation}/>,
   };
 };

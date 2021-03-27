@@ -1,25 +1,29 @@
-import React, { memo, useCallback, Fragment } from 'react';
+import React, { Fragment, memo, useCallback } from 'react';
 import { Button, Image, StyleSheet, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { Touchable } from '../Touchable';
 import Colors from "../../constants/Colors";
+import Color from "../../constants/Colors";
 import { ROUTER_PATH } from "../../navigation/path";
 import { ADD_TO_CART, DELETE_PRODUCT } from "../../store/types";
-import Color from '../../constants/Colors'
 
-export const ProductItem = memo(({item : product, navigation, isOwner}) => {
+export const ProductItem = memo(({item: product, navigation, isOwner}) => {
   const {id, title, price, imageUrl} = product
+  const dispatch = useDispatch()
+  const addToCart = () => dispatch({type: ADD_TO_CART, payload: {product}})
+
   const openDetail = useCallback(() => navigation.navigate(ROUTER_PATH.productsDetail, {
     productId: id,
     productTitle: title
   }), [navigation])
-  const dispatch = useDispatch()
 
-  const addToCart = () => dispatch({type: ADD_TO_CART, payload: { product } })
+  const editProductHandler = useCallback(() => navigation.navigate(ROUTER_PATH.editProduct, {
+    productId: id
+  }), [navigation]);
 
   const Actions = () => isOwner ? (
     <Fragment>
-      <Button color={Colors.primary} title="Edit" onPress={() => {}} />
+      <Button color={Colors.primary} title="Edit" onPress={editProductHandler}/>
       <Button
         color={Colors.primary}
         title="Delete"
@@ -55,7 +59,7 @@ export const ProductItem = memo(({item : product, navigation, isOwner}) => {
             <Text style={styles.price}>{price.toFixed(2)}</Text>
           </View>
           <View style={styles.actions}>
-            <Actions />
+            <Actions/>
           </View>
         </View>
       </Touchable>
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    height: '15%',
+    height: '18%',
   },
   title: {
     fontSize: 18,
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '25%',
+    height: '22%',
     paddingHorizontal: 16,
   }
 })

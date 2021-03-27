@@ -9,6 +9,7 @@ import { ProductDetailScreen } from "../screens/shop/ProductDetailScreen";
 import { CartScreen } from "../screens/shop/CartScreen";
 import { OrdersScreen } from "../screens/shop/OrdersScreen";
 import { UserProductsScreen } from "../screens/user/UserProductsScreen";
+import { EditProductScreen } from "../screens/user/EditProductScreen";
 import { ROUTER_PATH } from './path'
 import { isPlatform } from "../utils/platform";
 import Colors from '../constants/Colors'
@@ -66,7 +67,8 @@ const OrdersNavigator = createStackNavigator({
 
 const AdminNavigator = createStackNavigator(
   {
-    [ROUTER_PATH.userProduct]: UserProductsScreen
+    [ROUTER_PATH.userProduct]: UserProductsScreen,
+    [ROUTER_PATH.editProduct]: EditProductScreen,
   },
   {
     navigationOptions: {
