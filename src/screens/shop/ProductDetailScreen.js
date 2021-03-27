@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Image, Button } from 'react-native'
 import { useDispatch, useSelector } from "react-redux";
 import Colors from '../../constants/Colors'
 import { ADD_TO_CART } from "../../store/types";
+import Color from "../../constants/Colors";
 
 export const ProductDetailScreen = memo(({navigation}) => {
   const productId = navigation.getParam('productId')
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 20,
-    color: '#888',
+    color: Color.grey,
     textAlign: 'center',
     marginVertical: 20,
     fontFamily: 'open-sans-bold'

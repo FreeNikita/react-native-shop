@@ -5,6 +5,7 @@ import { Touchable } from '../Touchable';
 import Colors from "../../constants/Colors";
 import { ROUTER_PATH } from "../../navigation/path";
 import { ADD_TO_CART } from "../../store/types";
+import Color from '../../constants/Colors'
 
 export const ProductItem = memo(({item : product, navigation}) => {
   const {id, title, price, imageUrl} = product
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#888",
+    color: Color.grey,
     fontFamily: 'open-sans'
   },
   actions: {
