@@ -1,8 +1,7 @@
-import { actions } from "../actions/cart";
+import { actions } from "../actions/order";
 
-export const initialState = {
-  items: {},
-  totalAmount: 0,
+const initialState = {
+  orders: []
 }
 
 export default (state = initialState, action) => {

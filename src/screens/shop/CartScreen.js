@@ -1,26 +1,35 @@
 import React from 'react';
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Colors from '../../constants/Colors';
 import CartItem from '../../components/CartItem';
+import { ADD_ORDER } from "../../store/types";
 
 export const CartScreen = () => {
-  const cartTotalAmount = useSelector(({cart}) => cart.totalAmount);
+  const dispatch = useDispatch()
+  const totalAmount = useSelector(({cart}) => cart.totalAmount);
   const cartItems = useSelector(({cart: {items}}) => Object.values(items))
+
+  const addOrder = () => dispatch({
+    type: ADD_ORDER, payload: {
+      items: cartItems,
+      amount: totalAmount
+    }
+  })
 
   return (
     <View style={styles.screen}>
       <View style={styles.summary}>
         <Text style={styles.summaryText}>
           Total:{' '}
-          <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text>
+          <Text style={styles.amount}>${totalAmount.toFixed(2)}</Text>
         </Text>
         <Button
           color={Colors.secondary}
           title="Order Now"
           disabled={cartItems.length === 0}
-          onPress={() => {console.log("Press")}}
+          onPress={addOrder}
         />
       </View>
       <FlatList
@@ -31,6 +40,13 @@ export const CartScreen = () => {
     </View>
   );
 };
+
+CartScreen.navigationOptions = ({navigation}) => {
+  return {
+    headerTitle: 'Cart',
+  };
+};
+
 
 const styles = StyleSheet.create({
   screen: {

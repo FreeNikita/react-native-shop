@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, Button } from 'react-native'
+import { Button, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useDispatch, useSelector } from "react-redux";
 import Colors from '../../constants/Colors'
+import Color from '../../constants/Colors'
 import { ADD_TO_CART } from "../../store/types";
-import Color from "../../constants/Colors";
+import { CartHeaderButton } from "../../components/HeaderButtons";
 
 export const ProductDetailScreen = memo(({navigation}) => {
   const productId = navigation.getParam('productId')
@@ -11,13 +12,13 @@ export const ProductDetailScreen = memo(({navigation}) => {
   const product = availableProducts.find(({id}) => id === productId)
   const dispatch = useDispatch();
 
-  const addToCart = () => dispatch({type: ADD_TO_CART, payload: { product } })
+  const addToCart = () => dispatch({type: ADD_TO_CART, payload: {product}})
 
   return (
     <ScrollView>
       <View>
-        <Image style={styles.image} source={{uri: product.imageUrl}} />
-        <View  style={styles.button} >
+        <Image style={styles.image} source={{uri: product.imageUrl}}/>
+        <View style={styles.button}>
           <Button
             color={Colors.primary}
             title="Add to Cart"
@@ -32,7 +33,8 @@ export const ProductDetailScreen = memo(({navigation}) => {
 })
 
 ProductDetailScreen.navigationOptions = ({navigation}) => ({
-    headerTitle: navigation.getParam('productTitle')
+  headerTitle: navigation.getParam('productTitle'),
+  headerRight: () => <CartHeaderButton {...navigation} />
 })
 
 const styles = StyleSheet.create({

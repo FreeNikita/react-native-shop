@@ -3,7 +3,7 @@ import { FlatList } from "react-native";
 import { useSelector } from "react-redux";
 
 import { ProductItem } from "../../components/ProductItem";
-import { CartHeaderButton } from '../../components/HeaderButtons'
+import { CartHeaderButton, MenuHeaderButton } from '../../components/HeaderButtons'
 
 export const ProductsScreen = memo(({navigation}) => {
   const products = useSelector(state => state.products)
@@ -25,5 +25,6 @@ export const ProductsScreen = memo(({navigation}) => {
 
 ProductsScreen.navigationOptions = ({navigation}) => ({
   headerTitle: "All Products",
-  headerRight: () => <CartHeaderButton {...navigation} />
+  headerRight: () => <CartHeaderButton {...navigation} />,
+  headerLeft: () => <MenuHeaderButton navigation={navigation}/>,
 })

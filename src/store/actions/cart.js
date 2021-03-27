@@ -1,4 +1,5 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../types";
+import { initialState } from '../reducers/cart'
+import { ADD_ORDER, ADD_TO_CART, REMOVE_FROM_CART } from "../types";
 
 export const actions = {
   [ADD_TO_CART]: (state, payload) => {
@@ -35,13 +36,13 @@ export const actions = {
     }
   },
   [REMOVE_FROM_CART]: (state, payload) => {
-    const { id } = payload
-    let { items, totalAmount } = state
+    const {id} = payload
+    let {items, totalAmount} = state
     let item = items[id]
 
-    const { price, quantity } = item
+    const {price, quantity} = item
 
-    if(item.quantity === 1) {
+    if (item.quantity === 1) {
       delete items[id]
     } else {
       items = {
@@ -54,13 +55,14 @@ export const actions = {
       }
     }
 
-    console.log('totalAmount - price', totalAmount - price)
-
     return {
       ...state,
       items,
       totalAmount: totalAmount - price,
     }
+  },
+  [ADD_ORDER]: () => {
+    return initialState
   },
   default: (state) => state
 }

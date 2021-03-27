@@ -41,12 +41,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: 20,
-    shadowColor: 'black',
-    shadowOpacity: 0.20,
-    shadowOffset: {width: 0, height: 2},
-    shadowRadius: 8,
-    elevation: 4,
-    borderRadius: 8,
     backgroundColor: 'white'
   },
   itemData: {
