@@ -6,7 +6,7 @@ import { isPlatform } from "../../utils/platform";
 import { useDispatch } from "react-redux";
 import { REMOVE_FROM_CART } from "../../store/types";
 
-const CartItem = ({item}) => {
+const CartItem = ({item, deletable}) => {
   const {quantity, title, sum, id} = item;
   const isAndroid = isPlatform("android");
   const dispatch = useDispatch()
@@ -20,16 +20,19 @@ const CartItem = ({item}) => {
       </View>
       <View style={styles.itemData}>
         <Text style={styles.mainText}>${sum.toFixed(2)}</Text>
-        <TouchableOpacity
-          onPress={removeItem}
-          style={styles.deleteButton}
-        >
-          <Ionicons
-            name={isAndroid ? 'md-trash' : 'ios-trash'}
-            size={24}
-            color="red"
-          />
-        </TouchableOpacity>
+        {deletable && (
+          <TouchableOpacity
+            onPress={removeItem}
+            style={styles.deleteButton}
+          >
+            <Ionicons
+              name={isAndroid ? 'md-trash' : 'ios-trash'}
+              size={24}
+              color="red"
+            />
+          </TouchableOpacity>
+        )}
+
       </View>
     </View>
   );

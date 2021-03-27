@@ -35,18 +35,19 @@ export const CartScreen = () => {
       <FlatList
         data={cartItems}
         keyExtractor={item => item.id}
-        renderItem={(item) => <CartItem {...item}/>}
+        renderItem={(item) => (
+          <CartItem deletable {...item}/>
+        )}
       />
     </View>
   );
 };
 
-CartScreen.navigationOptions = ({navigation}) => {
+CartScreen.navigationOptions = () => {
   return {
     headerTitle: 'Cart',
   };
 };
-
 
 const styles = StyleSheet.create({
   screen: {

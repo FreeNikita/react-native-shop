@@ -1,4 +1,3 @@
-import { initialState } from '../reducers/cart'
 import { ADD_ORDER, ADD_TO_CART, REMOVE_FROM_CART } from "../types";
 
 export const actions = {
@@ -62,7 +61,10 @@ export const actions = {
     }
   },
   [ADD_ORDER]: () => {
-    return initialState
+    return {
+      items: {},
+      totalAmount: 0,
+    }
   },
   default: (state) => state
 }

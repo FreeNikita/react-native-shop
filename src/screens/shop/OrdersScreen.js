@@ -10,7 +10,6 @@ export const OrdersScreen = () => {
   return (
     <FlatList
       data={orders}
-      // keyExtractor={item => item.id}
       renderItem={(item) => <OrderItem {...item}/>}
     />
   );
