@@ -7,11 +7,7 @@ import CartItem from '../../components/CartItem';
 
 export const CartScreen = () => {
   const cartTotalAmount = useSelector(({cart}) => cart.totalAmount);
-  const cartItems = useSelector(({cart: {items}}) => Object.values(items).map(item => ({
-      ...item,
-      id: item.title + item.price
-    })
-  ))
+  const cartItems = useSelector(({cart: {items}}) => Object.values(items))
 
   return (
     <View style={styles.screen}>
@@ -29,8 +25,8 @@ export const CartScreen = () => {
       </View>
       <FlatList
         data={cartItems}
-        keyExtractor={item => item.productId}
-        renderItem={CartItem}
+        keyExtractor={item => item.id}
+        renderItem={(item) => <CartItem {...item}/>}
       />
     </View>
   );
