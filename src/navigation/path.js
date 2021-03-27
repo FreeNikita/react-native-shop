@@ -3,4 +3,5 @@ export const ROUTER_PATH = {
   productsDetail: 'productsDetail',
   cart: 'cart',
   order: 'order',
+  userProduct: 'userProduct',
 }

@@ -1,4 +1,4 @@
-import { ADD_ORDER, ADD_TO_CART, REMOVE_FROM_CART } from "../types";
+import { ADD_ORDER, ADD_TO_CART, DELETE_PRODUCT, REMOVE_FROM_CART } from "../types";
 
 export const actions = {
   [ADD_TO_CART]: (state, payload) => {
@@ -65,6 +65,20 @@ export const actions = {
       items: {},
       totalAmount: 0,
     }
+  },
+  [DELETE_PRODUCT]: (state, payload) => {
+    const { id } = payload
+    const { items, totalAmount } = state
+    if( items[id] ){
+      const { sum } = items[id]
+      delete items[id]
+      return {
+        ...state,
+        items,
+        totalAmount: totalAmount - sum,
+      }
+    }
+    return state
   },
   default: (state) => state
 }

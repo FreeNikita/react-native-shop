@@ -1,13 +1,13 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, Fragment } from 'react';
 import { Button, Image, StyleSheet, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { Touchable } from '../Touchable';
 import Colors from "../../constants/Colors";
 import { ROUTER_PATH } from "../../navigation/path";
-import { ADD_TO_CART } from "../../store/types";
+import { ADD_TO_CART, DELETE_PRODUCT } from "../../store/types";
 import Color from '../../constants/Colors'
 
-export const ProductItem = memo(({item : product, navigation}) => {
+export const ProductItem = memo(({item : product, navigation, isOwner}) => {
   const {id, title, price, imageUrl} = product
   const openDetail = useCallback(() => navigation.navigate(ROUTER_PATH.productsDetail, {
     productId: id,
@@ -16,6 +16,32 @@ export const ProductItem = memo(({item : product, navigation}) => {
   const dispatch = useDispatch()
 
   const addToCart = () => dispatch({type: ADD_TO_CART, payload: { product } })
+
+  const Actions = () => isOwner ? (
+    <Fragment>
+      <Button color={Colors.primary} title="Edit" onPress={() => {}} />
+      <Button
+        color={Colors.primary}
+        title="Delete"
+        onPress={() => {
+          dispatch({type: DELETE_PRODUCT, payload: {id}});
+        }}
+      />
+    </Fragment>
+  ) : (
+    <Fragment>
+      <Button
+        title={'View Details'}
+        color={Colors.primary}
+        onPress={openDetail}
+      />
+      <Button
+        title={'To Cart'}
+        color={Colors.primary}
+        onPress={addToCart}
+      />
+    </Fragment>
+  )
 
   return (
     <View style={styles.product}>
@@ -29,16 +55,7 @@ export const ProductItem = memo(({item : product, navigation}) => {
             <Text style={styles.price}>{price.toFixed(2)}</Text>
           </View>
           <View style={styles.actions}>
-            <Button
-              title={'View Details'}
-              color={Colors.primary}
-              onPress={openDetail}
-            />
-            <Button
-              title={'To Cart'}
-              color={Colors.primary}
-              onPress={addToCart}
-            />
+            <Actions />
           </View>
         </View>
       </Touchable>

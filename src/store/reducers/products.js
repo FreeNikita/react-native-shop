@@ -3,7 +3,7 @@ import { actions } from "../actions/products";
 
 const initialState = {
     availableProducts: PRODUCTS,
-    userProducts: PRODUCTS.filter(prod => prod.id === 'u1')
+    userProducts: PRODUCTS.filter(({ownerId}) => ownerId === 'u1')
 }
 
 export default ( state = initialState, action) => {
