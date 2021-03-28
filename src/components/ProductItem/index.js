@@ -1,11 +1,12 @@
 import React, { Fragment, memo, useCallback } from 'react';
-import { Button, Image, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, Image, StyleSheet, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { Touchable } from '../Touchable';
 import Colors from "../../constants/Colors";
 import Color from "../../constants/Colors";
 import { ROUTER_PATH } from "../../navigation/path";
 import { ADD_TO_CART, DELETE_PRODUCT } from "../../store/types";
+import { Card } from "../Card";
 
 export const ProductItem = memo(({item: product, navigation, isOwner}) => {
   const {id, title, price, imageUrl} = product
@@ -21,15 +22,26 @@ export const ProductItem = memo(({item: product, navigation, isOwner}) => {
     productId: id
   }), [navigation]);
 
+  const deleteHandler = () => {
+    Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
+      {text: 'No', style: 'default'},
+      {
+        text: 'Yes',
+        style: 'destructive',
+        onPress: () => {
+          dispatch({type: DELETE_PRODUCT, payload: {id}});
+        }
+      }
+    ]);
+  };
+
   const Actions = () => isOwner ? (
     <Fragment>
       <Button color={Colors.primary} title="Edit" onPress={editProductHandler}/>
       <Button
         color={Colors.primary}
         title="Delete"
-        onPress={() => {
-          dispatch({type: DELETE_PRODUCT, payload: {id}});
-        }}
+        onPress={deleteHandler}
       />
     </Fragment>
   ) : (
@@ -48,7 +60,7 @@ export const ProductItem = memo(({item: product, navigation, isOwner}) => {
   )
 
   return (
-    <View style={styles.product}>
+    <Card style={styles.product}>
       <Touchable onPress={openDetail} useForeground>
         <View>
           <View style={styles.imageContainer}>
@@ -63,24 +75,14 @@ export const ProductItem = memo(({item: product, navigation, isOwner}) => {
           </View>
         </View>
       </Touchable>
-    </View>
+    </Card>
   )
 })
 
 const styles = StyleSheet.create({
   product: {
-    shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowOffset: {width: 0, header: 2},
-    shadowRadius: 8,
-    elevation: 5,
-
-    borderRadius: 8,
-    backgroundColor: 'white',
-
     height: 300,
     margin: 20,
-
     overflow: 'hidden'
   },
   imageContainer: {
