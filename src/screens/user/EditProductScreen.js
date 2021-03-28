@@ -1,16 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  TextInput,
-  StyleSheet,
-} from 'react-native';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, TextInput, View, } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { UPDATE_PRODUCT, CREATE_PRODUCT } from '../../store/types';
 import { SaveHeaderButton } from "../../components/HeaderButtons";
+import { ROUTER_PATH } from "../../navigation/path";
 
-export const EditProductScreen = props => {
-  const prodId = props.navigation.getParam('productId');
+export const EditProductScreen = ({navigation}) => {
+  const dispatch = useDispatch()
+  const prodId = navigation.getParam('productId');
   const editedProduct = useSelector(state =>
     state.products.userProducts.find(prod => prod.id === prodId)
   );
@@ -25,11 +22,32 @@ export const EditProductScreen = props => {
   );
 
   const submitHandler = useCallback(() => {
-    console.log('Submitting!');
-  }, []);
+
+    if (prodId) {
+      dispatch({
+        type: UPDATE_PRODUCT, payload: {
+          id: prodId,
+          title,
+          imageUrl,
+          description
+        }
+      })
+    }
+    dispatch({
+      type: CREATE_PRODUCT, payload: {
+        id: new Date().toString(),
+        price: +price,
+        title,
+        imageUrl,
+        description,
+        ownerId: 'u1',
+      }
+    })
+    navigation.navigate(ROUTER_PATH.userProduct)
+  }, [title, imageUrl, description, price, prodId]);
 
   useEffect(() => {
-    props.navigation.setParams({ submit: submitHandler });
+    navigation.setParams({submit: submitHandler});
   }, [submitHandler]);
 
   return (

@@ -18,16 +18,6 @@ export const SaveHeaderButton = ({navigation}) => {
     />
   )
 
-  //<HeaderButtons HeaderButtonComponent={HeaderButton}>
-  //         <Item
-  //           title="Add"
-  //           iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
-  //           onPress={() => {
-  //             navData.navigation.navigate('EditProduct');
-  //           }}
-  //         />
-  //       </HeaderButtons>
-
   return (
     <HeaderButtons HeaderButtonComponent={Button}>
       <Item
