@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UPDATE_PRODUCT, CREATE_PRODUCT } from '../../store/types';
 import { SaveHeaderButton } from "../../components/HeaderButtons";
 import { ROUTER_PATH } from "../../navigation/path";
+import { OWNER_ID } from "../../constants/MOCK";
 
 export const EditProductScreen = ({navigation}) => {
   const dispatch = useDispatch()
@@ -40,7 +41,7 @@ export const EditProductScreen = ({navigation}) => {
         title,
         imageUrl,
         description,
-        ownerId: 'u1',
+        ownerId: OWNER_ID,
       }
     })
     navigation.navigate(ROUTER_PATH.userProduct)
