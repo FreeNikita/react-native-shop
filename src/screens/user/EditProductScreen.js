@@ -79,7 +79,7 @@ EditProductScreen.navigationOptions = ({navigation}) => {
     headerTitle: navigation.getParam('productId')
       ? 'Edit Product'
       : 'Add Product',
-    headerLeft: () => <SaveHeaderButton navigation={navigation}/>,
+    headerRight: () => <SaveHeaderButton navigation={navigation}/>,
   };
 };
 
