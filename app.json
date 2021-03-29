@@ -10,6 +10,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "description": " It's a studying project. Some part logic doesn't move to firebase.",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
