@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, View, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { UPDATE_PRODUCT, CREATE_PRODUCT } from '../../store/types';
+import { UPDATE_PRODUCT } from '../../store/types';
 import { SaveHeaderButton } from "../../components/HeaderButtons";
 import { ROUTER_PATH } from "../../navigation/path";
 import { OWNER_ID } from "../../constants/MOCK";
+import { createProduct } from '../../API/products'
 
 export const EditProductScreen = ({navigation}) => {
   const dispatch = useDispatch()
@@ -34,16 +35,13 @@ export const EditProductScreen = ({navigation}) => {
         }
       })
     }
-    dispatch({
-      type: CREATE_PRODUCT, payload: {
-        id: new Date().toString(),
-        price: +price,
-        title,
-        imageUrl,
-        description,
-        ownerId: OWNER_ID,
-      }
-    })
+    dispatch(createProduct({
+      price: +price,
+      title,
+      imageUrl,
+      description,
+      ownerId: OWNER_ID,
+    }))
     navigation.navigate(ROUTER_PATH.userProduct)
   }, [title, imageUrl, description, price, prodId]);
 
@@ -60,6 +58,9 @@ export const EditProductScreen = ({navigation}) => {
             style={styles.input}
             value={title}
             onChangeText={text => setTitle(text)}
+            keyboardType='default'
+            autoCapitalize='sentences'
+            autoCorrect
           />
         </View>
         <View style={styles.formControl}>
@@ -77,6 +78,7 @@ export const EditProductScreen = ({navigation}) => {
               style={styles.input}
               value={price}
               onChangeText={text => setPrice(text)}
+              keyboardType='decimal-pad'
             />
           </View>
         )}

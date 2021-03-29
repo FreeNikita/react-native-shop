@@ -1,10 +1,10 @@
 import { PRODUCTS } from "../../data/dummy-data";
-import { actions } from "../actions/products";
 import { OWNER_ID } from '../../constants/MOCK'
+import { actions } from "../actions/products";
 
 const initialState = {
-    availableProducts: PRODUCTS,
-    userProducts: PRODUCTS.filter(({ownerId}) => ownerId === OWNER_ID)
+    availableProducts: [],
+    userProducts: []
 }
 
 export default ( state = initialState, action) => {

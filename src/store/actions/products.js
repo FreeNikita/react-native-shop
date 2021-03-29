@@ -1,12 +1,20 @@
-import { CREATE_PRODUCT, DELETE_PRODUCT, UPDATE_PRODUCT } from "../types";
+import { SET_PRODUCTS, SET_OWN_PRODUCTS, CREATE_PRODUCT, DELETE_PRODUCT, UPDATE_PRODUCT } from "../types";
 
 export const actions = {
-  [DELETE_PRODUCT]: (state, payload) => {
-    const {id} = payload;
+  [SET_PRODUCTS]: (state, payload) => {
+    const { availableProducts } = payload
+
     return {
       ...state,
-      availableProducts: state.availableProducts.filter(product => product.id !== id),
-      userProducts: state.availableProducts.filter(product => product.id !== id)
+      availableProducts,
+    }
+  },
+  [SET_OWN_PRODUCTS]: (state, payload) => {
+    const { userProducts } = payload
+
+    return {
+      ...state,
+      userProducts,
     }
   },
   [CREATE_PRODUCT]: (state, payload) => {
@@ -31,6 +39,14 @@ export const actions = {
       ...state,
       availableProducts,
       userProducts
+    }
+  },
+  [DELETE_PRODUCT]: (state, payload) => {
+    const {id} = payload;
+    return {
+      ...state,
+      availableProducts: state.availableProducts.filter(product => product.id !== id),
+      userProducts: state.availableProducts.filter(product => product.id !== id)
     }
   },
   default: (state) => state
