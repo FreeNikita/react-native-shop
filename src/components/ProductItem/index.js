@@ -5,8 +5,9 @@ import { Touchable } from '../Touchable';
 import Colors from "../../constants/Colors";
 import Color from "../../constants/Colors";
 import { ROUTER_PATH } from "../../navigation/path";
-import { ADD_TO_CART, DELETE_PRODUCT } from "../../store/types";
+import { ADD_TO_CART } from "../../store/types";
 import { Card } from "../Card";
+import { deleteProducts } from "../../API/products";
 
 export const ProductItem = memo(({item: product, navigation, isOwner}) => {
   const {id, title, price, imageUrl} = product
@@ -29,7 +30,7 @@ export const ProductItem = memo(({item: product, navigation, isOwner}) => {
         text: 'Yes',
         style: 'destructive',
         onPress: () => {
-          dispatch({type: DELETE_PRODUCT, payload: {id}});
+          dispatch(deleteProducts({id}));
         }
       }
     ]);
@@ -59,6 +60,8 @@ export const ProductItem = memo(({item: product, navigation, isOwner}) => {
     </Fragment>
   )
 
+  console.log('price', price)
+
   return (
     <Card style={styles.product}>
       <Touchable onPress={openDetail} useForeground>
@@ -68,7 +71,7 @@ export const ProductItem = memo(({item: product, navigation, isOwner}) => {
           </View>
           <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.price}>{price.toFixed(2)}</Text>
+            <Text style={styles.price}>{price && price.toFixed(2)}</Text>
           </View>
           <View style={styles.actions}>
             <Actions/>

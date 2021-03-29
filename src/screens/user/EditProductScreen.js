@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, View, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { UPDATE_PRODUCT } from '../../store/types';
 import { SaveHeaderButton } from "../../components/HeaderButtons";
 import { ROUTER_PATH } from "../../navigation/path";
 import { OWNER_ID } from "../../constants/MOCK";
-import { createProduct } from '../../API/products'
+import { createProduct, updateProducts } from '../../API/products'
 
 export const EditProductScreen = ({navigation}) => {
   const dispatch = useDispatch()
@@ -26,22 +25,22 @@ export const EditProductScreen = ({navigation}) => {
   const submitHandler = useCallback(() => {
 
     if (prodId) {
-      dispatch({
-        type: UPDATE_PRODUCT, payload: {
+      dispatch(updateProducts({
           id: prodId,
           title,
           imageUrl,
           description
         }
-      })
+      ))
+    } else {
+      dispatch(createProduct({
+        price: +price,
+        title,
+        imageUrl,
+        description,
+        ownerId: OWNER_ID,
+      }))
     }
-    dispatch(createProduct({
-      price: +price,
-      title,
-      imageUrl,
-      description,
-      ownerId: OWNER_ID,
-    }))
     navigation.navigate(ROUTER_PATH.userProduct)
   }, [title, imageUrl, description, price, prodId]);
 

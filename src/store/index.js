@@ -11,4 +11,4 @@ const rootReducer = combineReducers({
   order: orderReducer,
 })
 
-export const store = createStore(rootReducer, applyMiddleware(thunk), composeWithDevTools())
+export const store = createStore(rootReducer, applyMiddleware(thunk))

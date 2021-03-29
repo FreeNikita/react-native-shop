@@ -3,7 +3,7 @@ import { OWNER_ID } from '../../constants/MOCK'
 import { actions } from "../actions/products";
 
 const initialState = {
-    availableProducts: [],
+    availableProducts: PRODUCTS,
     userProducts: []
 }
 

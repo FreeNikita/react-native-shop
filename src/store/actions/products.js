@@ -6,7 +6,7 @@ export const actions = {
 
     return {
       ...state,
-      availableProducts,
+      availableProducts: [...state.availableProducts, ...availableProducts],
     }
   },
   [SET_OWN_PRODUCTS]: (state, payload) => {
